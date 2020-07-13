@@ -7,14 +7,16 @@ var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 var bodyParser = require('body-parser')
+// Cors for cross origin allowance
 var cors = require('cors')
+
+//Require the Aylien npm package
 var aylien = require("aylien_textapi");
-// You could call it aylienapi, or anything else
+// Set Aylien API credentials
 var textapi = new aylien({
   application_id: process.env.API_ID,
   application_key: process.env.API_KEY
 });
-
 
 const app = express()
 app.use(cors())
@@ -25,15 +27,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
+// Specify the directory from where to load files
 app.use(express.static('dist'))
-console.log(JSON.stringify(mockAPIResponse))
+console.log(JSON.stringify(aylienAPI))
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
 app.get('/test', function (req, res) {
-    res.json(mockAPIResponse);
+    res.json(aylienAPI);
 })
 
 // designates what port the app will listen to for incoming requests
@@ -49,13 +52,8 @@ app.get('/api', function (req, res) {
         mode: 'Document'
       }, function(error, response) {
         if (error === null) {
-        	console.log("response is sent");
+          obj.push(response.polarity);
+        	}
             res.send(response);
-        } else {
-        	console.log(error);
-        }
       });
 });
-
-
-
