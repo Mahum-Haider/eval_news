@@ -29,15 +29,15 @@ app.use(bodyParser.urlencoded({
 
 // Specify the directory from where to load files
 app.use(express.static('dist'))
-console.log(JSON.stringify(AYLIENTextAPI))
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-app.get('/test', function (req, res) {
-    res.json(AYLIENTextAPI);
+app.get('/api', function (req, res) {
+    res.send(mockAPIResponse);
 })
+
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
