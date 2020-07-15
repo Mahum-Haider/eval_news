@@ -11,9 +11,9 @@ var bodyParser = require('body-parser')
 var cors = require('cors')
 
 //Require the Aylien npm package
-var aylien = require("aylien_textapi");
+var AYLIENTextAPI = require('aylien_textapi');
 // Set Aylien API credentials
-var textapi = new aylien({
+var textapi = new AYLIENTextAPI({
   application_id: process.env.API_ID,
   application_key: process.env.API_KEY
 });
@@ -29,14 +29,14 @@ app.use(bodyParser.urlencoded({
 
 // Specify the directory from where to load files
 app.use(express.static('dist'))
-console.log(JSON.stringify(aylienAPI))
+console.log(JSON.stringify(AYLIENTextAPI))
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
 app.get('/test', function (req, res) {
-    res.json(aylienAPI);
+    res.json(AYLIENTextAPI);
 })
 
 // designates what port the app will listen to for incoming requests
