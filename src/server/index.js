@@ -45,8 +45,8 @@ app.listen(8081, function () {
 })
 
 
-// GET Request from Aylien Api
-app.get('/api', function (req, res) {
+// POST Request from Aylien Api
+app.post('/api', function (req, res) {
     textapi.sentiment({
         text: req.query.input,
         mode: 'Document'
