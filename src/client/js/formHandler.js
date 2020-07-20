@@ -21,6 +21,7 @@ function handleSubmit(event) {
         document.getElementById('subjectivity').innerHTML = res.subjectivity
         document.getElementById('text').innerHTML = res.text
     });
+};
 
 export { handleSubmit }
 
