@@ -48,12 +48,14 @@ app.listen(8081, function () {
 // POST Request from Aylien Api
 app.post('/api', function (req, res) {
     textapi.sentiment({
-        text: req.query.input,
-        mode: 'Document'
-      }, function(error, response) {
-        if (error === null) {
-          obj.push(response.polarity);
-        	}
-            res.send(response);
-      });
+        'url': req.body.url,
+        'mode': 'article'
+    },	function(error, response) {
+        	if (error) {
+        		console.log('Fix me')
+      		}
+      		return;
+      		res.send(response);
+      	}
+    );
 });

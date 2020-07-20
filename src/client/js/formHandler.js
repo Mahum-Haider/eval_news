@@ -7,13 +7,25 @@ function handleSubmit(event) {
     Client.checkForName(formText)
     console.log("::: Form Submitted :::")
     
-    fetch('http://localhost:8081/api')
-    .then(res => {
-        return res.json()
+    fetch('http://localhost:8081/api', {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { 
+            "Content-Type": "application/json" 
+        },
+         body: JSON.stringify({input:formUrl})
     })
-    .then(function(data) {
-        document.getElementById('results').innerHTML = data.message
-    })
-}
+    .then(res=> res.json())
+    .then(function (res) {
+        document.getElementById('polarity').innerHTML = res.polarity
+        document.getElementById('subjectivity').innerHTML = res.subjectivity
+        document.getElementById('text').innerHTML = res.text
+    });
 
 export { handleSubmit }
+
+
+
+
+
+
