@@ -48,13 +48,12 @@ app.listen(8081, function () {
 // POST Request from Aylien Api
 app.post('/api', function (req, res) {
     textapi.sentiment({
-        'url': req.body.url,
-        'mode': 'article'
+        'url': req.body.input,
+        'mode': 'document'
     },	function(error, response) {
         	if (error) {
-        		console.log('Fix me')
+        		console.log(error)
       		}
-      		return;
       		res.send(response);
       	}
     );
